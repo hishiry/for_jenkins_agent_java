@@ -26,6 +26,8 @@ package test;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 public class HogwartsTest extends Base {
 
     @Test public void error_demo() {
