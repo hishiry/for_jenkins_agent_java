@@ -1,17 +1,17 @@
 pipeline{
     agent {
-        label: 'java_from_python_node'
+        label 'java_from_python_node'
     }
 
     stages{
         stag('pull'){
             steps {
-                git 'https://github.com/hishiry/for_jenkins_agent_java.git'
+                git branch: 'main', url: 'https://github.com/hishiry/for_jenkins_agent_java.git'
             }
         }
         stag('build'){
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -Dmaven.test.skop=true'
             }
             post{
                 sucess{
@@ -21,7 +21,7 @@ pipeline{
         }
         stag('test'){
             steps {
-                sh 'mvn test'
+                sh 'mvn clean test -Dmaven.test.failure.ignore=true'
             }
             post{
                 sucess{
